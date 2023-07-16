@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.13'
+    id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+    // 스프링 부트의 의존성들을 관리해주는 플러그인
+
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = '11'
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+
+// 의존성들을 어떤 원격 저장소에서 가져올 것인가
+repositories {
+    mavenCentral()
+}
+
+// 프로젝트 개발에 필요한 의존성 선언
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+    // 이 라이브러리를 추가할 경우, 컴파일만 하면 서버를 재시작하지 않아도 view 파일 변경이 가능
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

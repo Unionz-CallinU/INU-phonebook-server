@@ -31,8 +31,12 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
     // 이 라이브러리를 추가할 경우, 컴파일만 하면 서버를 재시작하지 않아도 view 파일 변경이 가능
+    developmentOnly("org.springframework.boot:spring-boot-devtools")
+
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
 }
 
 tasks.named('test') {

@@ -14,6 +14,6 @@ public class Professor {
     private String name;
     private String phoneNumber;
     private String email;
-    private boolean photo;
+    private String imageUrl;
     private String lab;
 }

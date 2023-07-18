@@ -17,8 +17,7 @@ public class Office {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "department_id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Department department;
 
     private String name;
@@ -27,6 +26,6 @@ public class Office {
 
     private String location;
 
-    @OneToMany(mappedBy = "office")
+    @OneToMany(mappedBy = "office", cascade = CascadeType.ALL)
     private List<Employee> employees = new ArrayList<>();
 }

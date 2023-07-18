@@ -16,15 +16,17 @@ public class Department {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "department_id")
     private Long id;
 
-    @ManyToOne
+    @OneToOne(mappedBy = "department", cascade = CascadeType.ALL)
+    private Office office;
+
+    @ManyToOne(fetch = FetchType.LAZY)
     private College college;
 
     private String name;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
     private List<Professor> professors = new ArrayList<>();
 
 }

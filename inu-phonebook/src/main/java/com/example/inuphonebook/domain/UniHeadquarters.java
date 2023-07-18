@@ -20,7 +20,7 @@ public class UniHeadquarters {
 
     private String name;
 
-    @OneToMany(mappedBy = "uniHeadquarters")
+    @OneToMany(mappedBy = "uniHeadquarters", cascade = CascadeType.ALL)
     private List<Staff> staffs = new ArrayList<>();
 
 }

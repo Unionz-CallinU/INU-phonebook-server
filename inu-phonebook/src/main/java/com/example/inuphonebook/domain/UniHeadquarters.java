@@ -3,29 +3,24 @@ package com.example.inuphonebook.domain;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-public class Professor {
+public class UniHeadquarters {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Department department;
-
     private String name;
 
-    private String phoneNumber;
-
-    private String email;
-
-    private String imageUrl;
-
-    private String lab;
+    @OneToMany(mappedBy = "uniHeadquarters", cascade = CascadeType.ALL)
+    private List<Staff> staffs = new ArrayList<>();
 
 }

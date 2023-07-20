@@ -6,26 +6,23 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-public class Professor {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Department department;
+    @JoinColumn(name = "office_id")
+    private Office office;
 
     private String name;
 
+    private String role;
+
     private String phoneNumber;
-
-    private String email;
-
-    private String imageUrl;
-
-    private String lab;
 
 }

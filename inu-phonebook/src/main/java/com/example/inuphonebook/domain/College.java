@@ -5,27 +5,20 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.*;
 
+@Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity
-public class Professor {
+public class College {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    private Department department;
-
     private String name;
 
-    private String phoneNumber;
-
-    private String email;
-
-    private String imageUrl;
-
-    private String lab;
+    @OneToMany(mappedBy = "college", cascade = CascadeType.ALL)
+    private Set<Department> departments = new HashSet<>();
 
 }

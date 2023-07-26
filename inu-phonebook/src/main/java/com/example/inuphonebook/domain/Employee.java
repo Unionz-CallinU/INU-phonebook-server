@@ -16,13 +16,16 @@ public class Employee {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "office_id")
-    private Office office;
+    private Department department;
 
     private String name;
+
+    private String position;
 
     private String role;
 
     private String phoneNumber;
+
+    private String email;
 
 }

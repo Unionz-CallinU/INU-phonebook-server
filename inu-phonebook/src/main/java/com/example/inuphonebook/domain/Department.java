@@ -20,6 +20,7 @@ public class Department {
     @ManyToOne(fetch = FetchType.LAZY)
     private College college;
 
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)

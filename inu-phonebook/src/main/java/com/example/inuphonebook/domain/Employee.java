@@ -18,12 +18,14 @@ public class Employee {
     @ManyToOne(fetch = FetchType.LAZY)
     private Department department;
 
+    @Column(nullable = false)
     private String name;
 
     private String position;
 
     private String role;
 
+    @Column(nullable = false)
     private String phoneNumber;
 
     private String email;

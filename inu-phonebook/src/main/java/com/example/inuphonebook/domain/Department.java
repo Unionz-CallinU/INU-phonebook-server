@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Getter
@@ -18,15 +17,12 @@ public class Department {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(mappedBy = "department", cascade = CascadeType.ALL)
-    private Office office;
-
     @ManyToOne(fetch = FetchType.LAZY)
     private College college;
 
     private String name;
 
     @OneToMany(mappedBy = "department", cascade = CascadeType.ALL)
-    private List<Professor> professors = new ArrayList<>();
+    private List<Employee> employees = new ArrayList<>();
 
 }

@@ -16,6 +16,7 @@ public class College {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String name;
 
     @OneToMany(mappedBy = "college", cascade = CascadeType.ALL)

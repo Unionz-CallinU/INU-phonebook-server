@@ -2,7 +2,7 @@ package com.example.inuphonebook.controller;
 
 import com.example.inuphonebook.common.domain.Message;
 import com.example.inuphonebook.service.INUCrawlingService;
-import com.example.inuphonebook.service.humanities.KoreanDepartment;
+import com.example.inuphonebook.service.departmentCrawling.HumanityDepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +17,7 @@ import java.io.IOException;
 @RequestMapping("/api/v1/crawling")
 public class CrawlingController {
     private final INUCrawlingService inuCrawlingService;
-    private final KoreanDepartment koreanDepartment;
+    private final HumanityDepartmentService humanityDepartmentService;
 
     private static final String SUCCESS_CRAWLING_MESSAGE = "crawling 성공";
 
@@ -28,10 +28,10 @@ public class CrawlingController {
         return new Message(SUCCESS_CRAWLING_MESSAGE);
     }
 
-    @GetMapping("/korean")
+    @GetMapping("/humanity")
     @ResponseStatus(HttpStatus.OK)
-    public Message checkDepartment() throws IOException {
-        koreanDepartment.getCrawlingData();
+    public Message saveImageURI() throws IOException {
+        humanityDepartmentService.getCrawlingData("uichina");
         return new Message(SUCCESS_CRAWLING_MESSAGE);
     }
 

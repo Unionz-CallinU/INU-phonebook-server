@@ -23,20 +23,16 @@ public class HumanityDepartmentService implements ImageCrawlingService {
     private final EmployeeRepository employeeRepository;
     private static String url = "https://";
     private static String url2 = ".inu.ac.kr/user/indexSub.do?codyMenuSeq";
-    private String siteId;
-    private String URI;
 
+    // e.g. https://korean.inu.ac.kr/user/indexSub.do?codyMenuSeq=1774553&siteId=korean
+    // department 가 korean, siteId 도 같은 경우가 있는 방면
 
+    // e.g. https://math.inu.ac.kr/user/indexSub.do?codyMenuSeq=1777697&siteId=isu
+    // department 가 math, siteId 가 isu 로 다른경우가 있음
     @Override
     public void getCrawlingData(String departmentType) throws IOException {
 
-        // e.g. https://korean.inu.ac.kr/user/indexSub.do?codyMenuSeq=1774553&siteId=korean
-        // department 가 korean, siteId 도 같은 경우가 있는 방면
-
-        // e.g. https://math.inu.ac.kr/user/indexSub.do?codyMenuSeq=1777697&siteId=isu
-        // department 가 math, siteId 가 isu 로 다른경우가 있음
-
-        checkDepartmentType(departmentType);
+        String URI = checkDepartmentType(departmentType);
 
         Document document = Jsoup.connect(URI).get();
         Elements elements = document.select("div[id=\"professor_wrap\"]");
@@ -75,11 +71,13 @@ public class HumanityDepartmentService implements ImageCrawlingService {
             // 수정 : 오타, .이 빠졌음
             employeePS.setImageByCrawling("https://"+departmentType+".inu.ac.kr" + srcValue);
 
-
         }
     }
 
-    private void checkDepartmentType(String departmentType) {
+    private String checkDepartmentType(String departmentType) {
+
+        String siteId;
+        String URI = null;
         if (departmentType == "korean") {
             siteId = departmentType;
             URI = url + departmentType + url2 + "=1774553&siteId=" + siteId;
@@ -99,5 +97,7 @@ public class HumanityDepartmentService implements ImageCrawlingService {
             siteId = "inuchina";
             URI = url + departmentType + url2 + "=2305900&siteId=" + siteId;
         }
+
+        return URI;
     }
 }

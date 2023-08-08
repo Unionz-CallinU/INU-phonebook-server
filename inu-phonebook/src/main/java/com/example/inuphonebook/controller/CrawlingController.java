@@ -3,8 +3,10 @@ package com.example.inuphonebook.controller;
 import com.example.inuphonebook.common.domain.Message;
 import com.example.inuphonebook.service.INUCrawlingService;
 import com.example.inuphonebook.service.departmentCrawling.HumanityDepartmentService;
+import com.example.inuphonebook.service.departmentCrawling.NaturalScienceDepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,6 +20,7 @@ import java.io.IOException;
 public class CrawlingController {
     private final INUCrawlingService inuCrawlingService;
     private final HumanityDepartmentService humanityDepartmentService;
+    private final NaturalScienceDepartmentService naturalScienceDepartmentService;
 
     private static final String SUCCESS_CRAWLING_MESSAGE = "crawling 성공";
 
@@ -32,6 +35,14 @@ public class CrawlingController {
     @ResponseStatus(HttpStatus.OK)
     public Message saveImageURI() throws IOException {
         humanityDepartmentService.getCrawlingData("uichina");
+        return new Message(SUCCESS_CRAWLING_MESSAGE);
+    }
+
+    @Scheduled(cron = "*/30 * * * * *") // 매 30초마다 실행
+    @GetMapping("/naturalScience")
+    @ResponseStatus(HttpStatus.OK)
+    public Message saveImageURI2() throws IOException {
+        naturalScienceDepartmentService.getCrawlingData("math");
         return new Message(SUCCESS_CRAWLING_MESSAGE);
     }
 

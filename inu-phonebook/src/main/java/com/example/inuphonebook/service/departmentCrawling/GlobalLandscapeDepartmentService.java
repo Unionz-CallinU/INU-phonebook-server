@@ -1,25 +1,18 @@
 package com.example.inuphonebook.service.departmentCrawling;
 
 import com.example.inuphonebook.common.Constants;
-import com.example.inuphonebook.common.exception.NotFoundException;
-import com.example.inuphonebook.domain.Employee;
 import com.example.inuphonebook.repository.EmployeeRepository;
 import com.example.inuphonebook.service.ImageCrawlingService;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.Iterator;
 
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class NaturalScienceDepartmentService implements ImageCrawlingService {
+public class GlobalLandscapeDepartmentService implements ImageCrawlingService {
 
     public static final String url = Constants.url;
     public static final String url2 = Constants.url2;
@@ -33,23 +26,22 @@ public class NaturalScienceDepartmentService implements ImageCrawlingService {
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
-        if (departmentType == "math") {
-            siteId = "isu";
-            URI = url + departmentType + url2 + "=1777697&siteId=" + siteId;
-        } else if (departmentType == "physics") {
+        if (departmentType == "uipa") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1775746&siteId=" + siteId;
-        } else if (departmentType == "chem") {
+            URI = url + departmentType + url2 + "=1781452&siteId=" + siteId;
+        } else if (departmentType == "politics") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1777737&siteId=" + siteId;
-        } else if (departmentType == "uifashion") {
-            siteId = "uipashion";
-            URI = url + departmentType + url2 + "=1777712&siteId=" + siteId;
-        } else if (departmentType == "marine") {
+            URI = url + departmentType + url2 + "=1781438&siteId=" + siteId;
+        } else if (departmentType == "econ") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1777732&siteId=" + siteId;
+            URI = url + departmentType + url2 + "=1780420&siteId=" + siteId;
+        } else if (departmentType == "trade") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1781298&siteId=" + siteId;
+        } else if (departmentType == "ccs") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1781409&siteId=" + siteId;
         }
         return URI;
     }
-
 }

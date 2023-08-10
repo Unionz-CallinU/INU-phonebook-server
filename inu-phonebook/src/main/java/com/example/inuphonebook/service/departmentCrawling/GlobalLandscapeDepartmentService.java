@@ -9,11 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
-
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class SocialScienceDepartmentService implements ImageCrawlingService {
+public class GlobalLandscapeDepartmentService implements ImageCrawlingService {
 
     public static final String url = Constants.url;
     public static final String url2 = Constants.url2;
@@ -24,29 +23,25 @@ public class SocialScienceDepartmentService implements ImageCrawlingService {
     }
 
     @Override
-    public void getIframe(String departmentType, EmployeeRepository employeeRepository) throws IOException {
-        ImageCrawlingService.super.getIframe(departmentType, employeeRepository);
-    }
-
-    @Override
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
-        if (departmentType == "socialwelfare") {
-            siteId = "dsw";
-            URI = url + departmentType + url2 + "=1779852&siteId=" + siteId;
-        } else if (departmentType == "mediaCommunication") {
-            URI = url + "www.inu.ac.kr/newdays/sub/introduce/professor.do";
-        } else if (departmentType == "lis") {
-            siteId = "cls";
-            URI = url + departmentType + url2 + "=1778330&siteId=" + siteId;
-        } else if (departmentType == "hrd") {
+        if (departmentType == "uipa") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1779630&siteId=" + siteId;
+            URI = url + departmentType + url2 + "=1781452&siteId=" + siteId;
+        } else if (departmentType == "politics") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1781438&siteId=" + siteId;
+        } else if (departmentType == "econ") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1780420&siteId=" + siteId;
+        } else if (departmentType == "trade") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1781298&siteId=" + siteId;
+        } else if (departmentType == "ccs") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + "=1781409&siteId=" + siteId;
         }
-
         return URI;
     }
-
-
 }

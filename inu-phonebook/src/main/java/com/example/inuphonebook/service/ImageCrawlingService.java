@@ -102,5 +102,32 @@ public interface ImageCrawlingService {
         }
     }
 
+    default void getCrawlingStartsWithInu(String departmentType, EmployeeRepository employeeRepository) throws IOException {
+
+        String URI = checkDepartmentType(departmentType);
+
+        Document document = Jsoup.connect(URI).get();
+//        System.out.println("테스트 : document" + document);
+        Elements elements = document.select("div[id=\"professor_wrap\"]");
+//        System.out.println("테스트 : elements" + elements);
+
+        Elements imageTags = elements.select("p.pro_img img"); // 추가 : img 태그에서 일관적으로 가져와지지 않아서 명시적으로 수정
+        Elements emailLinks = elements.select("a[href^=mailto]");
+
+        Iterator<Element> imageTagIterator = imageTags.iterator();
+        Iterator<Element> emailLinkIterator = emailLinks.iterator();
+
+        while (imageTagIterator.hasNext() && emailLinkIterator.hasNext()) {
+
+            String srcValue = imageTagIterator.next().attr("src");
+            String hrefValue = emailLinkIterator.next().attr("href");
+            String emailAddress = hrefValue.substring(7);
+
+            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
+
+            employeePS.setImageByCrawling("https://"+departmentType+".inu.ac.kr" + srcValue);
+        }
+    }
+
 
 }

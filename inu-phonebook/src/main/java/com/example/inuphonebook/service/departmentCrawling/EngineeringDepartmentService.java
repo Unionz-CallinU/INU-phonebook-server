@@ -1,9 +1,10 @@
 package com.example.inuphonebook.service.departmentCrawling;
 
-import com.example.inuphonebook.common.Constants;
+
 import com.example.inuphonebook.repository.EmployeeRepository;
 import com.example.inuphonebook.service.ImageCrawlingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,9 +15,12 @@ import java.io.IOException;
 @Service
 public class EngineeringDepartmentService implements ImageCrawlingService {
 
-    public static final String url = Constants.url;
-    public static final String url2 = Constants.url2;
-    public static final String url2_WWW = Constants.url2_WWW;
+    @Value("${location.url}")
+    private String url;
+    @Value("${location.url2}")
+    private String url2;
+    @Value("${location.url2_WWW}")
+    private String url2_WWW;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {

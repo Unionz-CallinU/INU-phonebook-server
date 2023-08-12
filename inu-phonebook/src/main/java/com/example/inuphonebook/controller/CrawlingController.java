@@ -31,6 +31,9 @@ public class CrawlingController {
     private final GlobalLandscapeDepartmentService globalLandscapeDepartmentService;
     private final EngineeringDepartmentService engineeringDepartmentService;
     private final InformationTechnologyDepartmentService informationTechnologyDepartmentService;
+    private final AdministrationDepartmentService administrationDepartmentService;
+    private final ArtSportDepartmentService artSportDepartmentService;
+    private final EducationDepartmentService educationDepartmentService;
 
     private static final String SUCCESS_CRAWLING_MESSAGE = "crawling 성공";
 
@@ -100,12 +103,38 @@ public class CrawlingController {
         engineeringDepartmentService.getCrawling("echeme", employeeRepository);
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }
-    @Scheduled(cron = "*/10 * * * * *")
+//    @Scheduled(cron = "*/10 * * * * *")
     @GetMapping("/informationTechnology")
     public ResponseEntity<?> saveImageURI_informationTechnology() throws IOException {
         informationTechnologyDepartmentService.getCrawling("computer", employeeRepository);
         informationTechnologyDepartmentService.getCrawling("communication", employeeRepository);
         informationTechnologyDepartmentService.getCrawlingEmbeddedMore("ese", employeeRepository);
+        return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
+    }
+
+//    @Scheduled(cron = "*/10 * * * * *")
+    @GetMapping("/administration")
+    public ResponseEntity<?> saveImageURI_administration() throws IOException {
+        administrationDepartmentService.getCrawling("management", employeeRepository);
+        administrationDepartmentService.getCrawling("tax", employeeRepository);
+        return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
+    }
+
+//    @Scheduled(cron = "*/10 * * * * *")
+    @GetMapping("/artSport")
+    public ResponseEntity<?> saveImageURI_artSport() throws IOException {
+        artSportDepartmentService.getCrawling("finearts", employeeRepository);
+        artSportDepartmentService.getCrawling_design("design", employeeRepository);
+        artSportDepartmentService.getCrawling("uipa10", employeeRepository);
+        artSportDepartmentService.getCrawling_sports("sports", employeeRepository);
+        artSportDepartmentService.getCrawling("hlkn", employeeRepository);
+        return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
+    }
+
+    @Scheduled(cron = "*/10 * * * * *")
+    @GetMapping("/education")
+    public ResponseEntity<?> saveImageURI_education() throws IOException {
+
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }
 

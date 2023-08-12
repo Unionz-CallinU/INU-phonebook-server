@@ -104,6 +104,8 @@ public class CrawlingController {
     @GetMapping("/informationTechnology")
     public ResponseEntity<?> saveImageURI_informationTechnology() throws IOException {
         informationTechnologyDepartmentService.getCrawling("computer", employeeRepository);
+        informationTechnologyDepartmentService.getCrawling("communication", employeeRepository);
+        informationTechnologyDepartmentService.getCrawlingEmbeddedMore("ese", employeeRepository);
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }
 

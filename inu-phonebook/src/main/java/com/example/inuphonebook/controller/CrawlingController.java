@@ -30,6 +30,7 @@ public class CrawlingController {
     private final SocialScienceDepartmentService socialScienceDepartmentService;
     private final GlobalLandscapeDepartmentService globalLandscapeDepartmentService;
     private final EngineeringDepartmentService engineeringDepartmentService;
+    private final InformationTechnologyDepartmentService informationTechnologyDepartmentService;
 
     private static final String SUCCESS_CRAWLING_MESSAGE = "crawling 성공";
 
@@ -86,7 +87,7 @@ public class CrawlingController {
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }
 
-    @Scheduled(cron = "*/10 * * * * *")
+//    @Scheduled(cron = "*/10 * * * * *")
     @GetMapping("/engineering")
     public ResponseEntity<?> saveImageURI_engineering() throws IOException {
         engineeringDepartmentService.getCrawling_Mechanical("me", employeeRepository);
@@ -97,6 +98,12 @@ public class CrawlingController {
         engineeringDepartmentService.getCrawling("mse", employeeRepository);
         engineeringDepartmentService.getCrawling("safety", employeeRepository);
         engineeringDepartmentService.getCrawling("echeme", employeeRepository);
+        return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
+    }
+    @Scheduled(cron = "*/10 * * * * *")
+    @GetMapping("/informationTechnology")
+    public ResponseEntity<?> saveImageURI_informationTechnology() throws IOException {
+        informationTechnologyDepartmentService.getCrawling("computer", employeeRepository);
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }
 

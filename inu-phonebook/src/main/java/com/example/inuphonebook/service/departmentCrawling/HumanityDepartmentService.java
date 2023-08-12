@@ -1,16 +1,16 @@
 package com.example.inuphonebook.service.departmentCrawling;
 
-import com.example.inuphonebook.common.Constants;
+
 import com.example.inuphonebook.common.exception.NotFoundException;
 import com.example.inuphonebook.domain.Employee;
 import com.example.inuphonebook.repository.EmployeeRepository;
 import com.example.inuphonebook.service.ImageCrawlingService;
 import lombok.RequiredArgsConstructor;
-import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,8 +22,10 @@ import java.util.Iterator;
 @Service
 public class HumanityDepartmentService implements ImageCrawlingService {
 
-    public static final String url = Constants.url;
-    public static final String url2 = Constants.url2;
+    @Value("${location.url}")
+    private String url;
+    @Value("${location.url2}")
+    private String url2;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {

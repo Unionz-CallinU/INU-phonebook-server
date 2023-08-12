@@ -25,3 +25,8 @@ logging:
   level:
     '[come.example.inuphonebook]': DEBUG
     '[org.hibernate.type]': TRACE
+
+location:
+  url : "https://"
+  url2 : ".inu.ac.kr/user/indexSub.do?codyMenuSeq"
+  url2_WWW : "www.inu.ac.kr/user/indexSub.do?codyMenuSeq"

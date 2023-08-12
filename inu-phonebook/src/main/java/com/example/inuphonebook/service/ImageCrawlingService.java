@@ -12,6 +12,8 @@ import org.jsoup.select.Elements;
 
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 
 public interface ImageCrawlingService {
@@ -79,9 +81,7 @@ public interface ImageCrawlingService {
         String URI = checkDepartmentType(departmentType);
 
         Document document = Jsoup.connect(URI).get(); // The 'url' parameter must not be empty.
-//        System.out.println("테스트 : document" + document);
         Elements elements = document.select("ul[class=\"prof_list\"]");
-//        System.out.println("테스트 : elements" + elements);
 
         Elements imageTags = elements.select("img[src]"); // 추가 : img 태그에서 일관적으로 가져와지지 않아서 명시적으로 수정
         Elements emailLinks = elements.select("a[href^=mailto]");
@@ -102,31 +102,64 @@ public interface ImageCrawlingService {
         }
     }
 
-    default void getCrawlingStartsWithInu(String departmentType, EmployeeRepository employeeRepository) throws IOException {
+    default void getCrawlingEmbeddedMore(String departmentType, EmployeeRepository employeeRepository) throws IOException {
 
         String URI = checkDepartmentType(departmentType);
 
-        Document document = Jsoup.connect(URI).get();
-//        System.out.println("테스트 : document" + document);
-        Elements elements = document.select("div[id=\"professor_wrap\"]");
-//        System.out.println("테스트 : elements" + elements);
+        Document document = Jsoup.connect(URI).get(); // The 'url' parameter must not be empty.
+        Elements elements = document.select("ul[class=\"gallery\"]");
+        Elements professorInfoSite = elements.select("a[href^=prfList]");
 
-        Elements imageTags = elements.select("p.pro_img img"); // 추가 : img 태그에서 일관적으로 가져와지지 않아서 명시적으로 수정
-        Elements emailLinks = elements.select("a[href^=mailto]");
+        Iterator<Element> siteIterator = professorInfoSite.iterator();
 
-        Iterator<Element> imageTagIterator = imageTags.iterator();
-        Iterator<Element> emailLinkIterator = emailLinks.iterator();
+        while (siteIterator.hasNext()) {
+            String hrefValue = siteIterator.next().attr("href");
 
-        while (imageTagIterator.hasNext() && emailLinkIterator.hasNext()) {
+            String prfId = extractParamValue(hrefValue, "prfId");
+            String prfSeq = extractParamValue(hrefValue, "prfSeq");
 
-            String srcValue = imageTagIterator.next().attr("src");
-            String hrefValue = emailLinkIterator.next().attr("href");
-            String emailAddress = hrefValue.substring(7);
+            Document detailPage = Jsoup.connect(URI + "&dum=dum&prfId=" + prfId + "&page=1&command=view&prfSeq=" + prfSeq + "&search=&column=").get();
+            Elements select = detailPage.select("div[id=\"content-container\"]");
 
-            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
+            Elements select1 = select.select("dd:contains(이메일)");
+            String email = select1.select("span[class=\"cont\"]").text();
+            String formatEmail = formatEmail(email);
 
-            employeePS.setImageByCrawling("https://"+departmentType+".inu.ac.kr" + srcValue);
+            Employee employeePS = employeeRepository.findByEmail(formatEmail).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
+
+            Elements selectImage = select.select("div[class=\"thumb\"]");
+            Elements imageTags = selectImage.select("img[src]");
+            Iterator<Element> imageIterator = imageTags.iterator();
+
+            while (imageIterator.hasNext()) {
+                String srcValue = imageIterator.next().attr("src");
+                employeePS.setImageByCrawling("https://"+departmentType+".inu.ac.kr" + srcValue);
+
+            }
+
+
         }
+
+
+
+    }
+
+    static String extractParamValue(String hrefValue, String paramName) {
+        // extract prfId, prfSeq
+        Pattern pattern = Pattern.compile("(?:[?&]" + paramName + "=)([^&]+)");
+        Matcher matcher = pattern.matcher(hrefValue);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        return null;
+    }
+
+    static String formatEmail(String input) {
+        // Replace " at " with "@"
+        String formatted = input.replaceAll("\\s*at\\s*", "@");
+        return formatted;
     }
 
 

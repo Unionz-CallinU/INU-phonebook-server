@@ -140,9 +140,70 @@ public interface ImageCrawlingService {
 
         }
 
+    }
 
+    default void getCrawling_design(String departmentType, EmployeeRepository employeeRepository) throws IOException {
+
+        String URI = checkDepartmentType(departmentType);
+
+        Document document = Jsoup.connect(URI).get(); // The 'url' parameter must not be empty.
+        Elements elements = document.select("div[class=\"page-content\"]");
+//        System.out.println("테스트 : elements " + elements);
+        Elements imageTags = elements.select("img[src^=https]");
+        Elements emailLinks = elements.select("a[href^=mailto]");
+
+        Iterator<Element> imageTagIterator = imageTags.iterator();
+        Iterator<Element> emailLinkIterator = emailLinks.iterator();
+
+        while (imageTagIterator.hasNext() && emailLinkIterator.hasNext()) {
+
+            String srcValue = imageTagIterator.next().attr("src");
+            String hrefValue = emailLinkIterator.next().attr("href");
+            String emailAddress = hrefValue.substring(7);
+
+            if (emailAddress.equals("hhsong3d@inu.ac.kr")) {
+                emailAddress = "hhsong3d@incheon.ac.kr";
+            }
+
+            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
+
+            employeePS.setImageByCrawling(srcValue);
+
+        }
 
     }
+
+    default void getCrawling_sports(String departmentType, EmployeeRepository employeeRepository) throws IOException {
+
+        String URI = checkDepartmentType(departmentType);
+
+        Document document = Jsoup.connect(URI).get(); // The 'url' parameter must not be empty.
+        Elements elements = document.select("div[class=\"prof_wrap\"]");
+        Elements imageTags = elements.select("img[src^=http]");
+        Elements elements1 = elements.select("dl:has(i.fa-envelope)");
+        Elements emailLinks = elements1.select("dd");
+
+
+        Iterator<Element> imageTagIterator = imageTags.iterator();
+        Iterator<Element> emailLinkIterator = emailLinks.iterator();
+
+        while (imageTagIterator.hasNext()) {
+
+            String srcValue = imageTagIterator.next().attr("src");
+            String emailAddress = emailLinkIterator.next().text();
+            System.out.println("테스트 : email " + emailAddress);
+            if (emailAddress.equals("jbhong@inu.ac.kr")) {
+                emailAddress = "jbhong@incheon.ac.kr";
+            }
+            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
+
+            employeePS.setImageByCrawling(srcValue);
+
+        }
+
+    }
+
+
 
     static String extractParamValue(String hrefValue, String paramName) {
         // extract prfId, prfSeq

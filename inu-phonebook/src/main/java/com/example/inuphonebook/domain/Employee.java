@@ -37,6 +37,10 @@ public class Employee {
 
     private String imageUrl;
 
+    public void setImageByCrawling(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     @Builder
     public Employee(String college, String department, String name, String position, String role, String phoneNumber, String email, String imageUrl) {
         this.college = college;

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -21,7 +22,7 @@ public class INUCrawlingService {
     private static String url = "https://www.inu.ac.kr/cop/haksaStaffSearch/staffSearchView.do?id=inu_011001000000&section=all&select1=&name=";
 
     public void getCrawlingDatas() throws IOException {
-        ArrayList<Employee> employee = new ArrayList<>();
+        List<Employee> employee = new ArrayList<>();
         Document document = Jsoup.connect(url).get();
         Elements elements = document.select("div[class=\"tbList mgt20\"]");
 //        System.out.println(elements);

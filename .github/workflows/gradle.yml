@@ -58,9 +58,10 @@ jobs:
         with:
           host: ${{ secrets.HOST_ADDRESS }}
           username: ${{ secrets.SERVER_USERNAME }}
-          password: ${{ secrets.SERVER_PASSWORD }}
+          key: ${{ secrets.PRIVATE_SSH_KEY }}
+          port: ${{ secrets.SSH_PORT}}
           script: |
-            docker stop inu-phonebook
-            docker rm inu-phonebook
-            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-            docker run -d -p 80:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+            sudo docker stop inu-phonebook
+            sudo docker rm inu-phonebook
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+            sudo docker run -d -p 80:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}

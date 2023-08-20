@@ -4,9 +4,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
+    password: admin1234
+    url: jdbc:mysql://springboot-webservice.ckpiy3twh501.ap-northeast-2.rds.amazonaws.com:3306/callinudb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: eunmi
   jpa:
     open-in-view: false
     database: mysql

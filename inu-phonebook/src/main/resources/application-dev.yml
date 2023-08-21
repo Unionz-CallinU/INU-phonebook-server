@@ -12,6 +12,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       '[hibernate.default_batch_fetch_size]': 100
+      hibernate.jdbc.batch_size: 20
     show-sql: true
   output:
     ansi:

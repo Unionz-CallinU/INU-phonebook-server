@@ -1,14 +1,10 @@
 package com.example.inuphonebook.domain;
 
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-
-@Entity
 @Getter
+@Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Employee {
 

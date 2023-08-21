@@ -5,14 +5,18 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     password: root
-    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+
     username: root
   jpa:
+#    hibernate:
+#      ddl-auto: create
     open-in-view: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     properties:
       '[hibernate.default_batch_fetch_size]': 100
+      hibernate.jdbc.batch_size: 20
     show-sql: true
   output:
     ansi:
@@ -23,7 +27,7 @@ spring:
 
 logging:
   level:
-    '[come.example.inuphonebook]': DEBUG
+    '[com.example.inuphonebook]': DEBUG
     '[org.hibernate.type]': TRACE
 
 location:

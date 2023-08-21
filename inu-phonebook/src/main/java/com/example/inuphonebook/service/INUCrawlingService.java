@@ -9,10 +9,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,7 +23,7 @@ public class INUCrawlingService {
     private static String url = "https://www.inu.ac.kr/cop/haksaStaffSearch/staffSearchView.do?id=inu_011001000000&section=all&select1=&name=";
 
     public void getCrawlingDatas() throws IOException {
-        ArrayList<Employee> employee = new ArrayList<>();
+        List<Employee> employee = new ArrayList<>();
         Document document = Jsoup.connect(url).get();
         Elements elements = document.select("div[class=\"tbList mgt20\"]");
 //        System.out.println(elements);
@@ -40,7 +42,9 @@ public class INUCrawlingService {
                         .email(select.get(6).text())
                         .build();
                 System.out.println(member.getRole());
+
                 employee.add(member);
+
             }
         }
         employeeRepository.saveAll(employee);

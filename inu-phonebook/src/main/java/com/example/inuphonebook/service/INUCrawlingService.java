@@ -9,11 +9,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -41,7 +42,9 @@ public class INUCrawlingService {
                         .email(select.get(6).text())
                         .build();
                 System.out.println(member.getRole());
+
                 employee.add(member);
+
             }
         }
         employeeRepository.saveAll(employee);

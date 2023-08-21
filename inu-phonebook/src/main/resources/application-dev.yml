@@ -9,6 +9,8 @@ spring:
 
     username: root
   jpa:
+#    hibernate:
+#      ddl-auto: create
     open-in-view: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

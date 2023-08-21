@@ -19,7 +19,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @GetMapping
+    @PostMapping
     public ResponseEntity<?> getEmployeeList(@RequestBody EmployeeSearchReqDto employeeSearchReqDto){
         EmployeeListRespDto employeeListRespDto = employeeService.직원리스트조회(employeeSearchReqDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "직원리스트조회 성공", employeeListRespDto), HttpStatus.OK);

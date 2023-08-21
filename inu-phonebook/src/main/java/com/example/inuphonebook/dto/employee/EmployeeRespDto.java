@@ -1,6 +1,8 @@
 package com.example.inuphonebook.dto.employee;
 
 import com.example.inuphonebook.domain.Employee;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +10,8 @@ import java.util.stream.Collectors;
 
 public class EmployeeRespDto {
 
+    @Getter
+    @Setter
     public static class EmployeeListRespDto {
         List<EmployeeDto> employeeDtoList = new ArrayList<>();
 
@@ -17,6 +21,7 @@ public class EmployeeRespDto {
                                     .collect(Collectors.toList());
         }
 
+        @Getter
         public class EmployeeDto {
             private Long id;
             private String college;
@@ -36,6 +41,8 @@ public class EmployeeRespDto {
         }
     }
 
+    @Getter
+    @Setter
     public static class EmployeeDetailRespDto {
         private Long id;
         private String college;

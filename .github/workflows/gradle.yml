@@ -29,11 +29,11 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: make application.properties
+      - name: make application-dev.yml
         run: |
           cd ./inu-phonebook/src/main/resources
-          touch ./application.properties
-          echo "${{ secrets.PROPERTIES }}" > ./application.properties
+          touch ./application-dev.yml
+          echo "${{ secrets.PROPERTIES }}" > ./application-dev.yml
         shell: bash
 
       - name: init with Gradle
@@ -61,7 +61,7 @@ jobs:
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           port: ${{ secrets.SSH_PORT}}
           script: |
-            sudo docker stop inu-phonebook
-            sudo docker rm inu-phonebook
-            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-            sudo docker run -d -p 80:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+            docker stop inu-phonebook
+            docker rm inu-phonebook
+            docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+            docker run -d -p 80:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}

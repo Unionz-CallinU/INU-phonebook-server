@@ -41,10 +41,7 @@ public class INUCrawlingService {
                         .phoneNumber(select.get(5).text())
                         .email(select.get(6).text())
                         .build();
-                System.out.println(member.getRole());
-
                 employee.add(member);
-
             }
         }
         employeeRepository.saveAll(employee);

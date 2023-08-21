@@ -1,6 +1,3 @@
-server:
-  address: localhost
-  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -8,6 +5,8 @@ spring:
     url: jdbc:mysql://springboot-webservice.ckpiy3twh501.ap-northeast-2.rds.amazonaws.com:3306/callinudb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
     username: eunmi
   jpa:
+    hibernate:
+      ddl-auto: update
     open-in-view: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

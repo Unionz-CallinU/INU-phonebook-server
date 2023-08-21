@@ -9,11 +9,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
+@Transactional
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -25,6 +26,7 @@ public class INUCrawlingService {
         List<Employee> employee = new ArrayList<>();
         Document document = Jsoup.connect(url).get();
         Elements elements = document.select("div[class=\"tbList mgt20\"]");
+//        System.out.println(elements);
 
         for (Element content : elements.select("tr")
         ) {
@@ -39,7 +41,10 @@ public class INUCrawlingService {
                         .phoneNumber(select.get(5).text())
                         .email(select.get(6).text())
                         .build();
+                System.out.println(member.getRole());
+
                 employee.add(member);
+
             }
         }
         employeeRepository.saveAll(employee);

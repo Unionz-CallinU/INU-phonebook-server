@@ -1,9 +1,7 @@
-server:
-  address: localhost
-  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+<<<<<<< HEAD
     password: root
     url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
 
@@ -11,9 +9,14 @@ spring:
     hikari:
       data-source-properties:
         socketTimeout: 30000
+=======
+    password: ${MYSQL_PASSWORD}
+    url: jdbc:mysql://{MYSQL_URL}:3306/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${MYSQL_USERNAME}
+>>>>>>> 961b6a6af95d063e3794740e2a6047b0f7b0cbb3
   jpa:
-#    hibernate:
-#      ddl-auto: create
+    hibernate:
+      ddl-auto: update
     open-in-view: false
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -30,7 +33,7 @@ spring:
 
 logging:
   level:
-    '[com.example.inuphonebook]': DEBUG
+    '[come.example.inuphonebook]': DEBUG
     '[org.hibernate.type]': TRACE
 
 location:

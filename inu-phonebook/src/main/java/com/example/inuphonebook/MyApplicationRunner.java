@@ -35,6 +35,7 @@ public class MyApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        long startTime = System.currentTimeMillis();
         inuCrawlingService.getCrawlingDatas();
         humanityDepartmentService.getCrawling("korean",employeeRepository);
         humanityDepartmentService.getCrawling("english",employeeRepository);
@@ -104,6 +105,10 @@ public class MyApplicationRunner implements ApplicationRunner {
 
         lawDepartmentService.getCrawling("law", employeeRepository);
         log.debug("크롤링 실행");
+        long endTime = System.currentTimeMillis();
+        long executionTime = endTime - startTime;
+        log.debug("Code execution time: " + executionTime + " ms");
+
 
 
     }

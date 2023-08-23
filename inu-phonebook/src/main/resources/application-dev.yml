@@ -23,7 +23,7 @@ spring:
 
 logging:
   level:
-    '[come.example.inuphonebook]': DEBUG
+    '[com.example.inuphonebook]': DEBUG
     '[org.hibernate.type]': TRACE
 
 location:

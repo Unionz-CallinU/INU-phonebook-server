@@ -50,12 +50,12 @@ public class HumanityDepartmentService implements ImageCrawlingService {
 
             String name = nameIterator.next().ownText();
 
-            if (name.equals("이용화") && emailAddress.equals("ylee@inu.ac.kr")) {
-                emailAddress = "ylee@incheon.ac.kr";
-            }
-            if (name.equals("남상욱") && emailAddress.equals("indimina@inu.ac.kr")) {
-                emailAddress = "indimina@incheon.ac.kr";
-            }
+//            if (name.equals("이용화") && emailAddress.equals("ylee@inu.ac.kr")) {
+//                emailAddress = "ylee@incheon.ac.kr";
+//            }
+//            if (name.equals("남상욱") && emailAddress.equals("indimina@inu.ac.kr")) {
+//                emailAddress = "indimina@incheon.ac.kr";
+//            }
 
             Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
 

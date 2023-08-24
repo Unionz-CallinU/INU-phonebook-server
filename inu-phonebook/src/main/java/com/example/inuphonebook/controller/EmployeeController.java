@@ -21,13 +21,13 @@ public class EmployeeController {
 
     @PostMapping
     public ResponseEntity<?> getEmployeeList(@RequestBody EmployeeSearchReqDto employeeSearchReqDto){
-        EmployeeListRespDto employeeListRespDto = employeeService.직원리스트조회(employeeSearchReqDto);
+        EmployeeListRespDto employeeListRespDto = employeeService.findAllEmployee(employeeSearchReqDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "직원리스트조회 성공", employeeListRespDto), HttpStatus.OK);
     }
 
     @GetMapping("{id}")
     public ResponseEntity<?> getEmployee(@PathVariable Long id){
-        EmployeeDetailRespDto employeeDetailRespDto = employeeService.직원상세조회(id);
+        EmployeeDetailRespDto employeeDetailRespDto = employeeService.findOneEmployee(id);
         return new ResponseEntity<>(new ResponseDto<>(1, "직원상세조회 성공", employeeDetailRespDto), HttpStatus.OK);
     }
 

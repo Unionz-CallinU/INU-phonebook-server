@@ -1,18 +1,15 @@
 package com.example.inuphonebook.service;
 
+import com.example.inuphonebook.common.Util.WebDriverUtil;
 import com.example.inuphonebook.domain.Employee;
 import com.example.inuphonebook.repository.EmployeeRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.List;
 
 @Transactional
 @Service
@@ -20,31 +17,20 @@ import java.util.*;
 @Slf4j
 public class INUCrawlingService {
     private final EmployeeRepository employeeRepository;
-    private static String url = "https://www.inu.ac.kr/cop/haksaStaffSearch/staffSearchView.do?id=inu_011001000000&section=all&select1=&name=";
+    private static final String url = "https://www.inu.ac.kr/inu/742/subview.do?enc=Zm5jdDF8QEB8JTJGc3RhZmZTZWFyY2glMkZpbnUlMkZzcmNoVmlldy5kbyUzRnNyY2hEZXB0VHlwZSUzRGFsbCUyNnNyY2hEZXB0JTNEJTI2bmFtZSUzRCUyNSUyNSUyNg%3D%3D";
 
-    public void getCrawlingDatas() throws IOException {
-        List<Employee> employee = new ArrayList<>();
-        Document document = Jsoup.connect(url).get();
-        Elements elements = document.select("div[class=\"tbList mgt20\"]");
-//        System.out.println(elements);
-
-        for (Element content : elements.select("tr")
+    public void getCrawlingDatas() throws IOException, InterruptedException {
+        WebDriverUtil webDriverUtil = new WebDriverUtil();
+        List<Employee> employees = webDriverUtil.useDriver(url);
+        for (Employee employee : employees
         ) {
-            Elements select = content.select("td");
-            if (select.size() != 0) {
-                Employee member = Employee.builder()
-                        .college(select.get(0).text())
-                        .department(select.get(1).text())
-                        .position(select.get(2).text())
-                        .name(select.get(3).text())
-                        .role(select.get(4).text())
-                        .phoneNumber(select.get(5).text())
-                        .email(select.get(6).text())
-                        .build();
-                employee.add(member);
+            Employee member = employeeRepository.findByNameAndDepartment(employee.getName(), employee.getDepartment())
+                    .orElse(null);
+            if (member != null) {
+                employees.remove(employee);
             }
         }
-        employeeRepository.saveAll(employee);
-        log.info("[INU homepage] crawling 성공");
+        employeeRepository.saveAll(employees);
     }
+
 }

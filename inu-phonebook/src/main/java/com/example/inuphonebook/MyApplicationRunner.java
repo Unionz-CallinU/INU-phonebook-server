@@ -36,73 +36,73 @@ public class MyApplicationRunner implements ApplicationRunner {
     @Override
     public void run(ApplicationArguments args) throws Exception {
         inuCrawlingService.getCrawlingDatas();
-        humanityDepartmentService.getCrawling("korean",employeeRepository);
-        humanityDepartmentService.getCrawling("english",employeeRepository);
-        humanityDepartmentService.getCrawling("german",employeeRepository);
-        humanityDepartmentService.getCrawling("uifrance",employeeRepository);
-        humanityDepartmentService.getCrawling("uijapan",employeeRepository);
-        humanityDepartmentService.getCrawling("uichina",employeeRepository);
-
-        naturalScienceDepartmentService.getCrawling("math", employeeRepository);
-        naturalScienceDepartmentService.getCrawling("physics", employeeRepository);
-        naturalScienceDepartmentService.getCrawling("chem", employeeRepository);
-        naturalScienceDepartmentService.getCrawling("uifashion", employeeRepository);
-        naturalScienceDepartmentService.getCrawling("marine", employeeRepository);
-
-        socialScienceDepartmentService.getCrawling("socialwelfare", employeeRepository);
-        socialScienceDepartmentService.getIframe("mediaCommunication", employeeRepository);
-        socialScienceDepartmentService.getCrawling("lis", employeeRepository);
-        socialScienceDepartmentService.getCrawling("hrd", employeeRepository);
-
-        globalLandscapeDepartmentService.getCrawling("uipa", employeeRepository);
-        globalLandscapeDepartmentService.getCrawling("politics", employeeRepository);
-        globalLandscapeDepartmentService.getCrawling("econ", employeeRepository);
-        globalLandscapeDepartmentService.getCrawling("trade", employeeRepository);
-        globalLandscapeDepartmentService.getCrawling("ccs", employeeRepository);
-
-        engineeringDepartmentService.getCrawling_Mechanical("me", employeeRepository);
-        engineeringDepartmentService.getCrawling("meca", employeeRepository);
-        engineeringDepartmentService.getCrawling("elec", employeeRepository);
-        engineeringDepartmentService.getCrawling("ee", employeeRepository);
-        engineeringDepartmentService.getCrawling("ime", employeeRepository);
-        engineeringDepartmentService.getCrawling("mse", employeeRepository);
-        engineeringDepartmentService.getCrawling("safety", employeeRepository);
-        engineeringDepartmentService.getCrawling("echeme", employeeRepository);
-
-        informationTechnologyDepartmentService.getCrawling("computer", employeeRepository);
-        informationTechnologyDepartmentService.getCrawling("communication", employeeRepository);
-        informationTechnologyDepartmentService.getCrawlingEmbeddedMore("ese", employeeRepository);
-
-        administrationDepartmentService.getCrawling("management", employeeRepository);
-        administrationDepartmentService.getCrawling("tax", employeeRepository);
-
-        artSportDepartmentService.getCrawling("finearts", employeeRepository);
-        artSportDepartmentService.getCrawling_design("design", employeeRepository);
-        artSportDepartmentService.getCrawling("uipa10", employeeRepository);
-        artSportDepartmentService.getCrawling_sports("sports", employeeRepository);
-        artSportDepartmentService.getCrawling("hlkn", employeeRepository);
-
-        educationDepartmentService.getCrawling("edukorean", employeeRepository);
-        educationDepartmentService.getCrawling("eduenglish", employeeRepository);
-        educationDepartmentService.getCrawling("edujapanese", employeeRepository);
-        educationDepartmentService.getCrawling("edumath", employeeRepository);
-        educationDepartmentService.getCrawling("eduphysical", employeeRepository);
-        educationDepartmentService.getCrawling("ece", employeeRepository);
-        educationDepartmentService.getCrawling("eduhistory", employeeRepository);
-        educationDepartmentService.getCrawling("eduethics", employeeRepository);
-
-        urbanScienceDepartmentService.getCrawling("urban", employeeRepository);
-        urbanScienceDepartmentService.getCrawling("civil", employeeRepository);
-        urbanScienceDepartmentService.getCrawling("ucv", employeeRepository);
-        urbanScienceDepartmentService.getCrawling("archi", employeeRepository);
-
-        lifeScienceDepartmentService.getCrawling("life", employeeRepository);
-        lifeScienceDepartmentService.getCrawling("bioeng", employeeRepository);
-        lifeScienceDepartmentService.getCrawling("nanobio", employeeRepository);
-
-        northeastAsiaDepartmentService.getCrawling("sonas", employeeRepository);
-
-        lawDepartmentService.getCrawling("law", employeeRepository);
+//        humanityDepartmentService.getCrawling("korean",employeeRepository);
+//        humanityDepartmentService.getCrawling("english",employeeRepository);
+//        humanityDepartmentService.getCrawling("german",employeeRepository);
+//        humanityDepartmentService.getCrawling("uifrance",employeeRepository);
+//        humanityDepartmentService.getCrawling("uijapan",employeeRepository);
+//        humanityDepartmentService.getCrawling("uichina",employeeRepository);
+//
+//        naturalScienceDepartmentService.getCrawling("math", employeeRepository);
+//        naturalScienceDepartmentService.getCrawling("physics", employeeRepository);
+//        naturalScienceDepartmentService.getCrawling("chem", employeeRepository);
+//        naturalScienceDepartmentService.getCrawling("uifashion", employeeRepository);
+//        naturalScienceDepartmentService.getCrawling("marine", employeeRepository);
+//
+//        socialScienceDepartmentService.getCrawling("socialwelfare", employeeRepository);
+//        socialScienceDepartmentService.getIframe("mediaCommunication", employeeRepository);
+//        socialScienceDepartmentService.getCrawling("lis", employeeRepository);
+//        socialScienceDepartmentService.getCrawling("hrd", employeeRepository);
+//
+//        globalLandscapeDepartmentService.getCrawling("uipa", employeeRepository);
+//        globalLandscapeDepartmentService.getCrawling("politics", employeeRepository);
+//        globalLandscapeDepartmentService.getCrawling("econ", employeeRepository);
+//        globalLandscapeDepartmentService.getCrawling("trade", employeeRepository);
+//        globalLandscapeDepartmentService.getCrawling("ccs", employeeRepository);
+//
+//        engineeringDepartmentService.getCrawling_Mechanical("me", employeeRepository);
+//        engineeringDepartmentService.getCrawling("meca", employeeRepository);
+//        engineeringDepartmentService.getCrawling("elec", employeeRepository);
+//        engineeringDepartmentService.getCrawling("ee", employeeRepository);
+//        engineeringDepartmentService.getCrawling("ime", employeeRepository);
+//        engineeringDepartmentService.getCrawling("mse", employeeRepository);
+//        engineeringDepartmentService.getCrawling("safety", employeeRepository);
+//        engineeringDepartmentService.getCrawling("echeme", employeeRepository);
+//
+//        informationTechnologyDepartmentService.getCrawling("computer", employeeRepository);
+//        informationTechnologyDepartmentService.getCrawling("communication", employeeRepository);
+//        informationTechnologyDepartmentService.getCrawlingEmbeddedMore("ese", employeeRepository);
+//
+//        administrationDepartmentService.getCrawling("management", employeeRepository);
+//        administrationDepartmentService.getCrawling("tax", employeeRepository);
+//
+//        artSportDepartmentService.getCrawling("finearts", employeeRepository);
+//        artSportDepartmentService.getCrawling_design("design", employeeRepository);
+//        artSportDepartmentService.getCrawling("uipa10", employeeRepository);
+//        artSportDepartmentService.getCrawling_sports("sports", employeeRepository);
+//        artSportDepartmentService.getCrawling("hlkn", employeeRepository);
+//
+//        educationDepartmentService.getCrawling("edukorean", employeeRepository);
+//        educationDepartmentService.getCrawling("eduenglish", employeeRepository);
+//        educationDepartmentService.getCrawling("edujapanese", employeeRepository);
+//        educationDepartmentService.getCrawling("edumath", employeeRepository);
+//        educationDepartmentService.getCrawling("eduphysical", employeeRepository);
+//        educationDepartmentService.getCrawling("ece", employeeRepository);
+//        educationDepartmentService.getCrawling("eduhistory", employeeRepository);
+//        educationDepartmentService.getCrawling("eduethics", employeeRepository);
+//
+//        urbanScienceDepartmentService.getCrawling("urban", employeeRepository);
+//        urbanScienceDepartmentService.getCrawling("civil", employeeRepository);
+//        urbanScienceDepartmentService.getCrawling("ucv", employeeRepository);
+//        urbanScienceDepartmentService.getCrawling("archi", employeeRepository);
+//
+//        lifeScienceDepartmentService.getCrawling("life", employeeRepository);
+//        lifeScienceDepartmentService.getCrawling("bioeng", employeeRepository);
+//        lifeScienceDepartmentService.getCrawling("nanobio", employeeRepository);
+//
+//        northeastAsiaDepartmentService.getCrawling("sonas", employeeRepository);
+//
+//        lawDepartmentService.getCrawling("law", employeeRepository);
         log.debug("크롤링 실행");
 
 

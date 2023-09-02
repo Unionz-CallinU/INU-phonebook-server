@@ -1,6 +1,5 @@
 package com.example.inuphonebook.controller;
 
-import com.example.inuphonebook.common.domain.Message;
 import com.example.inuphonebook.dto.ResponseDto;
 import com.example.inuphonebook.repository.EmployeeRepository;
 import com.example.inuphonebook.service.INUCrawlingService;
@@ -46,7 +45,7 @@ public class CrawlingController {
     @Scheduled(cron = "0 0 0 1 1/2 ?")
     @GetMapping("/inuhomepage")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<?> savePhonebook() throws IOException {
+    public ResponseEntity<?> savePhonebook() throws IOException, InterruptedException {
         inuCrawlingService.getCrawlingDatas();
         return new ResponseEntity<>(new ResponseDto<>(1, SUCCESS_CRAWLING_MESSAGE, null), HttpStatus.OK);
     }

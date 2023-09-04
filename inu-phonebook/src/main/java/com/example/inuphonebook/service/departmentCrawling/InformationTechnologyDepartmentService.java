@@ -19,8 +19,9 @@ public class InformationTechnologyDepartmentService implements ImageCrawlingServ
     private String url;
     @Value("${location.url2}")
     private String url2;
-    @Value("${location.url2_WWW}")
-    private String url2_WWW;
+    @Value("${location.url3}")
+    private String url3;
+
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -36,15 +37,15 @@ public class InformationTechnologyDepartmentService implements ImageCrawlingServ
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
-        if (departmentType == "computer") {
+        if (departmentType == "cse") {
             siteId = "isis";
-            URI = url + url2_WWW + "=2236524&siteId=" + siteId;
-        } else if (departmentType == "communication") {
-            siteId = "ite";
-            URI = url + url2_WWW + "=1785787&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3547" + url3;
+        } else if (departmentType == "ite") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/3484" + url3;
         } else if (departmentType == "ese") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1784839&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3419" + url3;
         }
 
         return URI;

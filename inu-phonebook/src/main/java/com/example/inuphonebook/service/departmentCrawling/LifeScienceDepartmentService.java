@@ -18,8 +18,8 @@ public class LifeScienceDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
-    @Value("${location.url2_WWW}")
-    private String url2_WWW;
+    @Value("${location.url3}")
+    private String url3;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -32,13 +32,16 @@ public class LifeScienceDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "life") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1041100&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4948" + url3;
+        } else if (departmentType == "molbio") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/4993" + url3;
         } else if (departmentType == "bioeng") {
             siteId = "engineeringlife";
-            URI = url + departmentType + url2 + "=108378&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/5115" + url3;
         } else if (departmentType == "nanobio") {
-            siteId = "nano";
-            URI = url + departmentType + url2 + "=1872176&siteId=" + siteId;
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/5064" + url3;
         }
         return URI;
     }

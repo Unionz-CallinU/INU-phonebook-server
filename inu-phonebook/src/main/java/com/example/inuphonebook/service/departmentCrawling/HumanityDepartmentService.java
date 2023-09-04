@@ -10,6 +10,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,72 +24,44 @@ import java.util.Iterator;
 @Service
 public class HumanityDepartmentService implements ImageCrawlingService {
 
+    private final Logger log = LoggerFactory.getLogger(getClass());
+
     @Value("${location.url}")
     private String url;
     @Value("${location.url2}")
     private String url2;
+    @Value("${location.url3}")
+    private String url3;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
-        String URI = checkDepartmentType(departmentType);
-
-        Document document = Jsoup.connect(URI).get();
-        Elements elements = document.select("div[id=\"professor_wrap\"]");
-
-        Elements imageTags = elements.select("p.pro_img img");
-        Elements emailLinks = elements.select("a[href^=mailto]");
-        Elements nameElements = document.select("li:has(strong img[src='/Web-home/wizUI/imgUI/professor/list_title_01.gif'][alt='이름'])");
-
-        Iterator<Element> imageTagIterator = imageTags.iterator();
-        Iterator<Element> emailLinkIterator = emailLinks.iterator();
-        Iterator<Element> nameIterator = nameElements.iterator();
-
-        while (imageTagIterator.hasNext() && emailLinkIterator.hasNext()) {
-
-            String srcValue = imageTagIterator.next().attr("src");
-            String hrefValue = emailLinkIterator.next().attr("href");
-            String emailAddress = hrefValue.substring(7);
-
-            String name = nameIterator.next().ownText();
-
-//            if (name.equals("이용화") && emailAddress.equals("ylee@inu.ac.kr")) {
-//                emailAddress = "ylee@incheon.ac.kr";
-//            }
-//            if (name.equals("남상욱") && emailAddress.equals("indimina@inu.ac.kr")) {
-//                emailAddress = "indimina@incheon.ac.kr";
-//            }
-
-            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
-
-            employeePS.setImageByCrawling("https://" + departmentType + ".inu.ac.kr" + srcValue);
-        }
+        ImageCrawlingService.super.getCrawling(departmentType, employeeRepository);
     }
 
-        @Override
-        public String checkDepartmentType(String departmentType) {
+    @Override
+    public String checkDepartmentType(String departmentType) {
 
-            String siteId;
-            String URI = null;
-            if (departmentType == "korean") {
-                siteId = departmentType;
-                URI = url + departmentType + url2 + "=1774553&siteId=" + siteId;
-            } else if(departmentType == "english") {
-                siteId = "ui";
-                URI = url + departmentType + url2 + "=85166&siteId=" + siteId;
-            } else if(departmentType == "german") {
-                siteId = departmentType;
-                URI = url + departmentType + url2 + "=229036&siteId=" + siteId;
-            } else if (departmentType == "uifrance") {
-                siteId = "inufrance";
-                URI = url + departmentType + url2 + "=465824&siteId=" + siteId;
-            } else if (departmentType == "uijapan") {
-                siteId = "unjapan";
-                URI = url + departmentType + url2 + "=1795743&siteId=" + siteId;
-            } else if (departmentType == "uichina") {
-                siteId = "inuchina";
-                URI = url + departmentType + url2 + "=2305900&siteId=" + siteId;
-            }
-
+        String siteId;
+        String URI = null;
+        if (departmentType == "korean") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/1783" + url3;
+        } else if(departmentType == "english") {
+            siteId = "ui";
+            URI = url + departmentType + url2 + siteId + "/1985" + url3;
+        } else if(departmentType == "german") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/1853" + url3;
+        } else if (departmentType == "inufrance") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/1927" + url3;
+        } else if (departmentType == "unjapan") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/2048" + url3;
+        } else if (departmentType == "inuchina") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/2109" + url3;
+        }
             return URI;
         }
 }

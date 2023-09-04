@@ -3,6 +3,8 @@ package com.example.inuphonebook.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Blob;
+
 @Getter
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -31,6 +33,7 @@ public class Employee {
 
     private String email;
 
+    @Lob
     private String imageUrl;
 
     public void setImageByCrawling(String imageUrl) {

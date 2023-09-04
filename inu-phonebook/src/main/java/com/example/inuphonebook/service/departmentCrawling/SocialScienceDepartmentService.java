@@ -20,6 +20,8 @@ public class SocialScienceDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
+    @Value("${location.url3}")
+    private String url3;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -35,17 +37,18 @@ public class SocialScienceDepartmentService implements ImageCrawlingService {
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
-        if (departmentType == "socialwelfare") {
-            siteId = "dsw";
-            URI = url + departmentType + url2 + "=1779852&siteId=" + siteId;
-        } else if (departmentType == "mediaCommunication") {
-            URI = url + "www.inu.ac.kr/newdays/sub/introduce/professor.do";
-        } else if (departmentType == "lis") {
-            siteId = "cls";
-            URI = url + departmentType + url2 + "=1778330&siteId=" + siteId;
+        if (departmentType == "dsw") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/2486" + url3;
+        } else if (departmentType == "newdays") {
+            siteId = "shinbang";
+            URI = url + departmentType + url2 + siteId + "/2528" + url3;
+        } else if (departmentType == "cls") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/2458" + url3;
         } else if (departmentType == "hrd") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1779630&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/2601" + url3;
         }
 
         return URI;

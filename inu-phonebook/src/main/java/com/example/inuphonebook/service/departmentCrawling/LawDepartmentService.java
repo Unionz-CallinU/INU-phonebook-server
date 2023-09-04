@@ -18,6 +18,10 @@ public class LawDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
+    @Value("${location.url3}")
+    private String url3;
+    @Value("${location.url2_WWW}")
+    private String url2_WWW;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -30,7 +34,7 @@ public class LawDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "law") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1781403&siteId=" + siteId;
+            URI = url + url2_WWW + departmentType + "/5194" + url3;
         }
         return URI;
     }

@@ -18,8 +18,7 @@ jobs:
         with:
           host: ${{ secrets.HOST_ADDRESS }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.PRIVATE_SSH_KEY }}
-          port: ${{ secrets.SSH_PORT}}
+          password: ${{ secrets.SERVER_PASSWORD }}
           script: |
             docker stop inu-phonebook
             docker rm inu-phonebook

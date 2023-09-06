@@ -9,6 +9,7 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.util.Base64Utils;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -39,8 +40,26 @@ public interface ImageCrawlingService {
 
             String srcValue = imageTagIterator.next().attr("style");
             // "base64," 이후의 데이터 추출
-            String base64Data = srcValue.split(",")[1];
-//            System.out.println("테스트 : base64data " + base64Data);
+            // 정규 표현식 패턴 설정
+            Pattern pattern = Pattern.compile(",([^)]+)");
+
+            // 문자열에서 패턴 매칭을 수행
+            Matcher matcher = pattern.matcher(srcValue);
+            String base64Data = null;
+            // 매칭된 부분 추출
+            if (matcher.find()) {
+                String result = matcher.group(1).trim();
+                base64Data = result;
+            }
+
+//            // base64 디코딩
+//            byte[] decodedBytes = Base64Utils.decodeFromString(base64Data);
+//
+//            // 디코딩된 바이트 배열을 문자열로 변환
+//            String decodedString = new String(decodedBytes);
+//
+//            // 결과 출력
+//            System.out.println("디코딩된 문자열: " + decodedString);
 
             String hrefValue = emailLinkIterator.next().attr("href");
 //            System.out.println("테스트 : href " + hrefValue);
@@ -54,35 +73,6 @@ public interface ImageCrawlingService {
     }
 
     String checkDepartmentType(String departmentType);
-
-    default void getIframe(String departmentType, EmployeeRepository employeeRepository) throws IOException{
-        String URI = checkDepartmentType(departmentType);
-        Document document = Jsoup.connect(URI).get();
-        String iframeSrc = document.select("#professor iframe").attr("src");
-        Document iframeDocument = Jsoup.connect("https://www.inu.ac.kr"+iframeSrc).get();
-
-        Elements elements = iframeDocument.select("div[id=\"professor_wrap\"]");
-
-        Elements imageTags = elements.select("p.pro_img img");
-        Elements emailLinks = elements.select("a[href^=mailto]");
-
-
-        Iterator<Element> imageTagIterator = imageTags.iterator();
-        Iterator<Element> emailLinkIterator = emailLinks.iterator();
-
-        while (imageTagIterator.hasNext() && emailLinkIterator.hasNext()) {
-
-            String srcValue = imageTagIterator.next().attr("src");
-            String hrefValue = emailLinkIterator.next().attr("href");
-            String emailAddress = hrefValue.substring(7);
-
-            Employee employeePS = employeeRepository.findByEmail(emailAddress).orElseThrow(() -> new NotFoundException("이메일이 존재하지 않습니다."));
-
-            employeePS.setImageByCrawling("https://"+departmentType+".inu.ac.kr" + srcValue);
-
-        }
-
-    }
 
 
     default void getCrawlingEmbeddedMore(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -148,25 +138,6 @@ public interface ImageCrawlingService {
 
     }
 
-
-
-    static String extractParamValue(String hrefValue, String paramName) {
-        // extract prfId, prfSeq
-        Pattern pattern = Pattern.compile("(?:[?&]" + paramName + "=)([^&]+)");
-        Matcher matcher = pattern.matcher(hrefValue);
-
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-
-        return null;
-    }
-
-    static String formatEmail(String input) {
-        // Replace " at " with "@"
-        String formatted = input.replaceAll("\\s*at\\s*", "@");
-        return formatted;
-    }
 
 
 }

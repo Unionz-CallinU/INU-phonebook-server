@@ -17,6 +17,8 @@ public class EducationDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
+    @Value("${location.url3}")
+    private String url3;
     @Value("${location.url2_WWW}")
     private String url2_WWW;
     @Override
@@ -30,28 +32,28 @@ public class EducationDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "edukorean") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=717794&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4244" + url3;
         } else if (departmentType == "eduenglish") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1688933&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4418" + url3;
         } else if (departmentType == "edujapanese") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=717910&siteId=" + siteId;
-        } else if (departmentType == "edumath") {
-            siteId = departmentType;
-            URI = url + departmentType + url2 + "=717852&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4613" + url3;
+        } else if (departmentType == "mathedu") {
+            siteId = "edumath";
+            URI = url + departmentType + url2 + siteId + "/4315" + url3;
         } else if (departmentType == "eduphysical") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=1795517&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4669" + url3;
         } else if (departmentType == "ece") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1795478&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4498" + url3;
         } else if (departmentType == "eduhistory") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=93579&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/7986" + url3;
         } else if (departmentType == "eduethics") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1233109&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4559" + url3;
         }
         return URI;
     }

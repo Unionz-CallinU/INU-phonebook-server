@@ -1,9 +1,13 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${MYSQL_PASSWORD}
-    url: jdbc:mysql://{MYSQL_URL}:3306/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: ${MYSQL_USERNAME}
+    password: root
+    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+#    password: ${MYSQL_PASSWORD}
+#    url: jdbc:mysql://{MYSQL_URL}:3306/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+#    username: ${MYSQL_USERNAME}
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -28,7 +32,8 @@ logging:
 
 location:
   url : "https://"
-  url2 : ".inu.ac.kr/user/indexSub.do?codyMenuSeq"
-  url2_WWW : "www.inu.ac.kr/user/indexSub.do?codyMenuSeq"
-  url_design : ".inu.ac.kr/bbs/board.php?bo_table=bbs_01_01"
+  url2 : ".inu.ac.kr/"
+  url3 : "/subview.do"
+
+  url2_WWW : "www.inu.ac.kr/"
   url_sports : ".inu.ac.kr/bbs/board.php?bo_table=sub1_2_a"

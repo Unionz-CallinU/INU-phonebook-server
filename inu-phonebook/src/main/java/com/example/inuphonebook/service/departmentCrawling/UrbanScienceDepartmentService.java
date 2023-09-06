@@ -18,8 +18,8 @@ public class UrbanScienceDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
-    @Value("${location.url2_WWW}")
-    private String url2_WWW;
+    @Value("${location.url3}")
+    private String url3;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -32,19 +32,19 @@ public class UrbanScienceDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "urban") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1795447&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4895" + url3;
         } else if (departmentType == "civil") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=42098&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4701" + url3;
         } else if (departmentType == "et") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=1717072&siteId=" + siteId;
-        } else if (departmentType == "ucv") {
-            siteId = departmentType;
-            URI = url + url2_WWW + "=1795420&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/7716" + url3;
+        } else if (departmentType == "scity") {
+            siteId = "ucv";
+            URI = url + departmentType + url2 + siteId + "/4754" + url3;
         } else if (departmentType == "archi") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1795388&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4830" + url3;
         }
 
         return URI;

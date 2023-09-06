@@ -17,9 +17,14 @@ public class AdministrationDepartmentService implements ImageCrawlingService {
     @Value("${location.url}")
     private String url;
 
+    @Value("${location.url2}")
+    private String url2;
+
+    @Value("${location.url3}")
+    private String url3;
+
     @Value("${location.url2_WWW}")
     private String url2_WWW;
-
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -30,12 +35,12 @@ public class AdministrationDepartmentService implements ImageCrawlingService {
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
-        if (departmentType == "management") {
+        if (departmentType == "biz") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=1787857&siteId=" + siteId;
+            URI = url + url2_WWW + siteId + "/3622" + url3;
         } else if (departmentType == "tax") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=1787871&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3673" + url3;
         }
         return URI;
     }

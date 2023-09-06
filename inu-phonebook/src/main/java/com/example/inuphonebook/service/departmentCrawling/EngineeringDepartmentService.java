@@ -19,46 +19,44 @@ public class EngineeringDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
-    @Value("${location.url2_WWW}")
-    private String url2_WWW;
+    @Value("${location.url3}")
+    private String url3;
 
     @Override
     public void getCrawling(String departmentType, EmployeeRepository employeeRepository) throws IOException {
         ImageCrawlingService.super.getCrawling(departmentType, employeeRepository);
     }
 
-    @Override
-    public void getCrawling_Mechanical(String departmentType, EmployeeRepository employeeRepository) throws IOException {
-        ImageCrawlingService.super.getCrawling_Mechanical(departmentType, employeeRepository);
-    }
+
 
     @Override
     public String checkDepartmentType(String departmentType) {
         String siteId;
         String URI = null;
         if (departmentType == "me") {
-            URI = url + "www.inu.ac.kr/cop/schoolDepartmentIntroduction/meEmpList.do";
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/3001" + url3;
         } else if (departmentType == "meca") {
             siteId = departmentType;
-            URI = url + url2_WWW + "=118632&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3041" + url3;
         } else if (departmentType == "elec") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1784455&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3334" + url3;
         } else if (departmentType == "ee") {
             siteId = "electron";
-            URI = url + departmentType + url2 + "=1784460&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3383" + url3;
         } else if (departmentType == "ime") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1783283&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3090" + url3;
         } else if (departmentType == "mse") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1784347&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3158" + url3;
         } else if (departmentType == "safety") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1784443&siteId=" + siteId;
-        } else if (departmentType == "echeme") {
-            siteId = "energy";
-            URI = url + departmentType + url2 + "=1784450&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3217" + url3;
+        } else if (departmentType == "energy") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/3278" + url3;
         }
         return URI;
     }

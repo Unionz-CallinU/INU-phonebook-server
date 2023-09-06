@@ -18,8 +18,8 @@ public class ArtSportDepartmentService implements ImageCrawlingService {
     private String url;
     @Value("${location.url2}")
     private String url2;
-    @Value("${location.url_design}")
-    private String url_design;
+    @Value("${location.url3}")
+    private String url3;
     @Value("${location.url_sports}")
     private String url_sports;
 
@@ -28,10 +28,6 @@ public class ArtSportDepartmentService implements ImageCrawlingService {
         ImageCrawlingService.super.getCrawling(departmentType, employeeRepository);
     }
 
-    @Override
-    public void getCrawling_design(String departmentType, EmployeeRepository employeeRepository) throws IOException {
-        ImageCrawlingService.super.getCrawling_design(departmentType, employeeRepository);
-    }
 
     @Override
     public void getCrawling_sports(String departmentType, EmployeeRepository employeeRepository) throws IOException {
@@ -44,17 +40,18 @@ public class ArtSportDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "finearts") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=1795617&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/4150" + url3;
         } else if (departmentType == "design") {
-            URI = url + departmentType + url_design;
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/4005" + url3;
         } else if (departmentType == "uipa10") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + "=133120&siteId=" + siteId;
+            URI = url + departmentType + url2 + siteId + "/3963" + url3;
         } else if (departmentType == "sports") {
             URI = "http://" + departmentType + url_sports;
-        } else if (departmentType == "hlkn") {
-            siteId = "uiex";
-            URI = url + departmentType + url2 + "=1795602&siteId=" + siteId;
+        } else if (departmentType == "uiex") {
+            siteId = departmentType;
+            URI = url + departmentType + url2 + siteId + "/4077" + url3;
         }
 
         return URI;

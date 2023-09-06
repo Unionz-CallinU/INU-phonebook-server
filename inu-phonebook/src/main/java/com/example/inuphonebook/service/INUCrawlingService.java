@@ -18,6 +18,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 @Transactional
 @Service
@@ -59,7 +60,7 @@ public class INUCrawlingService {
                 Document document = Jsoup.parse(htmlContent);
 
                 // 원하는 요소 선택 및 내용 추출
-                ArrayList<Employee> employee = new ArrayList<>();
+                List<Employee> employee = new ArrayList<>();
 
                 Elements elements = document.select("div[class=\"func-table\"]");
 

@@ -2,7 +2,6 @@ package com.example.inuphonebook.controller;
 
 
 import com.example.inuphonebook.dto.ResponseDto;
-import com.example.inuphonebook.dto.employee.EmployeeReqDto.EmployeeSearchReqDto;
 import com.example.inuphonebook.dto.employee.EmployeeRespDto.EmployeeDetailRespDto;
 import com.example.inuphonebook.dto.employee.EmployeeRespDto.EmployeeListRespDto;
 import com.example.inuphonebook.service.EmployeeService;
@@ -21,10 +20,10 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @Operation(summary = "직원 리스트조회", description = "바디에 String 값(이름,전화번호,학과)를 json 형식으로 보내주세요")
+    @Operation(summary = "직원 리스트조회", description = "요청 파라미터로 String 값(이름,전화번호,학과)을 보내주세요")
     @ApiResponse(code = 200, message = "ok", response = EmployeeListRespDto.class)
-    @PostMapping
-    public ResponseEntity<?> getEmployeeList(@RequestBody EmployeeSearchReqDto employeeSearchReqDto){
+    @GetMapping
+    public ResponseEntity<?> getEmployeeList(@RequestParam String employeeSearchReqDto){
         EmployeeListRespDto employeeListRespDto = employeeService.findAllEmployee(employeeSearchReqDto);
         return new ResponseEntity<>(new ResponseDto<>(1, "직원리스트조회 성공", employeeListRespDto), HttpStatus.OK);
     }

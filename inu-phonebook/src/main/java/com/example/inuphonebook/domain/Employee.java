@@ -3,7 +3,6 @@ package com.example.inuphonebook.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Getter
 @Entity

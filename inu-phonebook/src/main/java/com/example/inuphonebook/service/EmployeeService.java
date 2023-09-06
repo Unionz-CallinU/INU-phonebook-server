@@ -2,7 +2,6 @@ package com.example.inuphonebook.service;
 
 import com.example.inuphonebook.common.exception.NotFoundException;
 import com.example.inuphonebook.domain.Employee;
-import com.example.inuphonebook.dto.employee.EmployeeReqDto.EmployeeSearchReqDto;
 import com.example.inuphonebook.dto.employee.EmployeeRespDto.EmployeeDetailRespDto;
 import com.example.inuphonebook.dto.employee.EmployeeRespDto.EmployeeListRespDto;
 import com.example.inuphonebook.repository.EmployeeRepository;
@@ -19,8 +18,8 @@ public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeListRespDto findAllEmployee(EmployeeSearchReqDto employeeSearchReqDto) {
-        List<Employee> employeeList = employeeRepository.findEmployeeList(employeeSearchReqDto.getSearch());
+    public EmployeeListRespDto findAllEmployee(String employeeSearchReqDto) {
+        List<Employee> employeeList = employeeRepository.findEmployeeList(employeeSearchReqDto);
         return new EmployeeListRespDto(employeeList);
 
     }

@@ -28,10 +28,6 @@ public class SocialScienceDepartmentService implements ImageCrawlingService {
         ImageCrawlingService.super.getCrawling(departmentType, employeeRepository);
     }
 
-    @Override
-    public void getIframe(String departmentType, EmployeeRepository employeeRepository) throws IOException {
-        ImageCrawlingService.super.getIframe(departmentType, employeeRepository);
-    }
 
     @Override
     public String checkDepartmentType(String departmentType) {

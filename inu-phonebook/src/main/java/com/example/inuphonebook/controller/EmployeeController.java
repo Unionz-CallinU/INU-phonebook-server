@@ -20,7 +20,7 @@ public class EmployeeController {
 
     private final EmployeeService employeeService;
 
-    @Operation(summary = "직원 리스트조회", description = "바디에 String 값(이름,전화번호,학과)를 json 형식으로 보내주세요")
+    @Operation(summary = "직원 리스트조회", description = "요청 파라미터로 String 값(이름,전화번호,학과)을 보내주세요")
     @ApiResponse(code = 200, message = "ok", response = EmployeeListRespDto.class)
     @GetMapping
     public ResponseEntity<?> getEmployeeList(@RequestParam String employeeSearchReqDto){

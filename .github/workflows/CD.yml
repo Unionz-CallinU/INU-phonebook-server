@@ -58,5 +58,5 @@ jobs:
             docker stop inu-phonebook
             docker rm inu-phonebook
             docker pull ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
-            docker run -d -p 80:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+            docker run -d -p 8103:8080 -e TZ=Asia/Seoul --name inu-phonebook ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
     

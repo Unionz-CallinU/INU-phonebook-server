@@ -39,13 +39,6 @@ jobs:
           gradle-version: 8.1.1
           arguments: build
           build-root-directory: inu-phonebook
-          
-      - name: Build with Gradle
-        uses: gradle/gradle-build-action@v2
-        with:
-          gradle-version: 8.1.1
-          arguments: build
-          build-root-directory: inu-phonebook
 
       - name: Docker build & push
         run: |

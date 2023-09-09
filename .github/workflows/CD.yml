@@ -13,13 +13,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Docker build & push
+        run: |
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker build -t ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }} --platform linux/amd64 .
+          docker push ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPO }}
+
+          
       - name: Deploy
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST_ADDRESS }}
           username: ${{ secrets.SERVER_USERNAME }}
-          key: ${{ secrets.PRIVATE_SSH_KEY }}
-          port: ${{ secrets.SSH_PORT}}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          port : ${{ secrets.SERVER_PORT }}
           script: |
             docker stop inu-phonebook
             docker rm inu-phonebook

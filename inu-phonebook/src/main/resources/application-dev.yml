@@ -28,7 +28,6 @@ spring:
 logging:
   level:
     '[com.example.inuphonebook]': DEBUG
-    '[org.hibernate.type]': TRACE
 
 location:
   url : "https://"

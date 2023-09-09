@@ -76,10 +76,10 @@ public class CrawlingController {
     }
 
     @Scheduled(cron = "0 0 4 1 */6 ?")
-    @GetMapping("/socialScience")
+    @GetMapping("/socialScience") //
     public ResponseEntity<?> saveImageURI_socialScience() throws IOException{
         socialScienceDepartmentService.getCrawling("dsw", employeeRepository);
-        socialScienceDepartmentService.getIframe("newdays", employeeRepository);
+        socialScienceDepartmentService.getCrawling("newdays", employeeRepository);
         socialScienceDepartmentService.getCrawling("cls", employeeRepository);
         socialScienceDepartmentService.getCrawling("hrd", employeeRepository);
         log.debug("크롤링 실행");

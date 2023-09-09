@@ -40,4 +40,4 @@ out/
 .DS_Store
 
 ### yml file ###
-inu-phonebook/src/main/resources/application-dev.yml
+/src/main/resources/application-dev.yml

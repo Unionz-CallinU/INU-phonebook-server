@@ -11,7 +11,7 @@ import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
-@Component
+//@Component
 public class MyApplicationRunner implements ApplicationRunner {
 
     private final INUCrawlingService inuCrawlingService;

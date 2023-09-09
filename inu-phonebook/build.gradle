@@ -37,9 +37,9 @@ dependencies {
     runtimeOnly 'com.mysql:mysql-connector-j'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
-    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-
+//    implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
+//    implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
     implementation 'org.seleniumhq.selenium:selenium-java:4.1.2'
     implementation 'org.jsoup:jsoup:1.15.3'
 

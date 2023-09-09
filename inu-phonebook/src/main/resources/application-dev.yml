@@ -1,12 +1,12 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-#    password: root
-#    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
-#    username: root
-    password: ${MYSQL_PASSWORD}
-    url: jdbc:mysql://{MYSQL_URL}:3306/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: ${MYSQL_USERNAME}
+    password: root
+    url: jdbc:mysql://localhost:3306/inu_phonebook?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&rewriteBatchedStatements=true
+    username: root
+#    password: ${MYSQL_PASSWORD}
+#    url: jdbc:mysql://{MYSQL_URL}:3306/${DATABASE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+#    username: ${MYSQL_USERNAME}
 
   jpa:
     hibernate:

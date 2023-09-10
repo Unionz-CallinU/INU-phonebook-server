@@ -37,6 +37,10 @@ public class EmployeeRespDto {
             private String phoneNumber;
             @ApiModelProperty(example = "/9ydfe4254...")
             private String imageUrl;
+            @ApiModelProperty(example = "교수")
+            private String role;
+            @ApiModelProperty(example = "rnwnsgud90@naver.com")
+            private String email;
 
             public EmployeeDto(Employee employee) {
                 this.id = employee.getId();
@@ -45,6 +49,12 @@ public class EmployeeRespDto {
                 this.name = employee.getName();
                 this.phoneNumber = employee.getPhoneNumber();
                 this.imageUrl = employee.getImageUrl();
+                if (employee.getRole().length() == 0) {
+                    this.role = null;
+                } else {
+                    this.role = employee.getRole();
+                }
+                this.email = employee.getEmail();
             }
         }
     }
@@ -64,6 +74,11 @@ public class EmployeeRespDto {
         private String phoneNumber;
         @ApiModelProperty(example = "/9ydfe4254...")
         private String imageUrl;
+        @ApiModelProperty(example = "교수")
+        private String role;
+        @ApiModelProperty(example = "rnwnsgud90@naver.com")
+        private String email;
+
 
         public EmployeeDetailRespDto(Employee employee) {
             this.id = employee.getId();
@@ -72,6 +87,13 @@ public class EmployeeRespDto {
             this.name = employee.getName();
             this.phoneNumber = employee.getPhoneNumber();
             this.imageUrl = employee.getImageUrl();
+            if (employee.getRole().length() == 0) {
+                this.role = null;
+            } else {
+                this.role = employee.getRole();
+            }
+
+            this.email = employee.getEmail();
         }
     }
 }

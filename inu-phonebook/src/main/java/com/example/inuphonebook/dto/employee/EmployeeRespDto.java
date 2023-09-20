@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static java.util.Optional.*;
+
 public class EmployeeRespDto {
 
     @Getter
@@ -44,14 +46,14 @@ public class EmployeeRespDto {
             private String email;
 
             public EmployeeDto(Employee employee) {
-                this.id = Optional.ofNullable(employee.getId()).orElse(null);
-                this.college = Optional.ofNullable(employee.getCollege()).orElse(null);
-                this.department = Optional.ofNullable(employee.getDepartment()).orElse(null);
-                this.name = Optional.ofNullable(employee.getName()).orElse(null);
-                this.phoneNumber = Optional.ofNullable(employee.getPhoneNumber()).orElse(null);
-                this.imageUrl = Optional.ofNullable(employee.getImageUrl()).orElse(null);
-                this.role = Optional.ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
-                this.email = Optional.ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
+                this.id = employee.getId();
+                this.college = ofNullable(employee.getCollege()).filter(s -> !s.isEmpty()).orElse(null);
+                this.department = ofNullable(employee.getDepartment()).filter(s -> !s.isEmpty()).orElse(null);
+                this.name = ofNullable(employee.getName()).filter(s -> !s.isEmpty()).orElse(null);
+                this.phoneNumber = ofNullable(employee.getPhoneNumber()).filter(s -> !s.isEmpty()).orElse(null);
+                this.imageUrl = ofNullable(employee.getImageUrl()).filter(s -> !s.isEmpty()).orElse(null);
+                this.role = ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
+                this.email = ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
             }
         }
     }
@@ -78,14 +80,14 @@ public class EmployeeRespDto {
 
 
         public EmployeeDetailRespDto(Employee employee) {
-            this.id = Optional.ofNullable(employee.getId()).orElse(null);
-            this.college = Optional.ofNullable(employee.getCollege()).orElse(null);
-            this.department = Optional.ofNullable(employee.getDepartment()).orElse(null);
-            this.name = Optional.ofNullable(employee.getName()).orElse(null);
-            this.phoneNumber = Optional.ofNullable(employee.getPhoneNumber()).orElse(null);
-            this.imageUrl = Optional.ofNullable(employee.getImageUrl()).orElse(null);
-            this.role = Optional.ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
-            this.email = Optional.ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
+            this.id = employee.getId();
+            this.college = ofNullable(employee.getCollege()).filter(s -> !s.isEmpty()).orElse(null);
+            this.department = ofNullable(employee.getDepartment()).filter(s -> !s.isEmpty()).orElse(null);
+            this.name = ofNullable(employee.getName()).filter(s -> !s.isEmpty()).orElse(null);
+            this.phoneNumber = ofNullable(employee.getPhoneNumber()).filter(s -> !s.isEmpty()).orElse(null);
+            this.imageUrl = ofNullable(employee.getImageUrl()).filter(s -> !s.isEmpty()).orElse(null);
+            this.role = ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
+            this.email = ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
         }
     }
 }

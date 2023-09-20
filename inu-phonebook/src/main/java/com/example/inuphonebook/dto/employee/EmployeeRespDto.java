@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class EmployeeRespDto {
@@ -43,18 +44,14 @@ public class EmployeeRespDto {
             private String email;
 
             public EmployeeDto(Employee employee) {
-                this.id = employee.getId();
-                this.college = employee.getCollege();
-                this.department = employee.getDepartment();
-                this.name = employee.getName();
-                this.phoneNumber = employee.getPhoneNumber();
-                this.imageUrl = employee.getImageUrl();
-                if (employee.getRole().length() == 0) {
-                    this.role = null;
-                } else {
-                    this.role = employee.getRole();
-                }
-                this.email = employee.getEmail();
+                this.id = Optional.ofNullable(employee.getId()).orElse(null);
+                this.college = Optional.ofNullable(employee.getCollege()).orElse(null);
+                this.department = Optional.ofNullable(employee.getDepartment()).orElse(null);
+                this.name = Optional.ofNullable(employee.getName()).orElse(null);
+                this.phoneNumber = Optional.ofNullable(employee.getPhoneNumber()).orElse(null);
+                this.imageUrl = Optional.ofNullable(employee.getImageUrl()).orElse(null);
+                this.role = Optional.ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
+                this.email = Optional.ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
             }
         }
     }
@@ -81,19 +78,14 @@ public class EmployeeRespDto {
 
 
         public EmployeeDetailRespDto(Employee employee) {
-            this.id = employee.getId();
-            this.college = employee.getCollege();
-            this.department = employee.getDepartment();
-            this.name = employee.getName();
-            this.phoneNumber = employee.getPhoneNumber();
-            this.imageUrl = employee.getImageUrl();
-            if (employee.getRole().length() == 0) {
-                this.role = null;
-            } else {
-                this.role = employee.getRole();
-            }
-
-            this.email = employee.getEmail();
+            this.id = Optional.ofNullable(employee.getId()).orElse(null);
+            this.college = Optional.ofNullable(employee.getCollege()).orElse(null);
+            this.department = Optional.ofNullable(employee.getDepartment()).orElse(null);
+            this.name = Optional.ofNullable(employee.getName()).orElse(null);
+            this.phoneNumber = Optional.ofNullable(employee.getPhoneNumber()).orElse(null);
+            this.imageUrl = Optional.ofNullable(employee.getImageUrl()).orElse(null);
+            this.role = Optional.ofNullable(employee.getRole()).filter(s -> !s.isEmpty()).orElse(null);
+            this.email = Optional.ofNullable(employee.getEmail()).filter(s -> !s.isEmpty()).orElse(null);
         }
     }
 }

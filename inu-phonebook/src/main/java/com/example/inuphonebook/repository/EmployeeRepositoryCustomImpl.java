@@ -20,6 +20,8 @@ public class EmployeeRepositoryCustomImpl implements EmployeeRepositoryCustom{
         sql += "or ";
         sql += "e.phoneNumber like :search ";
         sql += "or ";
+        sql += "e.college like :search ";
+        sql += "or ";
         sql += "e.department like :search ";
 
         TypedQuery<Employee> query = em.createQuery(sql, Employee.class);

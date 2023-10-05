@@ -34,6 +34,8 @@ public class EmployeeRespDto {
             private String college;
             @ApiModelProperty(example = "컴퓨터공학과")
             private String department;
+            @ApiModelProperty(example = "교수")
+            private String position;
             @ApiModelProperty(example = "구준형")
             private String name;
             @ApiModelProperty(example = "01040363457")
@@ -49,6 +51,7 @@ public class EmployeeRespDto {
                 this.id = employee.getId();
                 this.college = ofNullable(employee.getCollege()).filter(s -> !s.isEmpty()).orElse(null);
                 this.department = ofNullable(employee.getDepartment()).filter(s -> !s.isEmpty()).orElse(null);
+                this.position = ofNullable(employee.getPosition()).filter(s -> !s.isEmpty()).orElse(null);
                 this.name = ofNullable(employee.getName()).filter(s -> !s.isEmpty()).orElse(null);
                 this.phoneNumber = ofNullable(employee.getPhoneNumber()).filter(s -> !s.isEmpty()).orElse(null);
                 this.imageUrl = ofNullable(employee.getImageUrl()).filter(s -> !s.isEmpty()).orElse(null);
@@ -67,13 +70,15 @@ public class EmployeeRespDto {
         private String college;
         @ApiModelProperty(example = "컴퓨터공학과")
         private String department;
+        @ApiModelProperty(example = "교수")
+        private String position;
         @ApiModelProperty(example = "구준형")
         private String name;
         @ApiModelProperty(example = "01040363457")
         private String phoneNumber;
         @ApiModelProperty(example = "/9ydfe4254...")
         private String imageUrl;
-        @ApiModelProperty(example = "교수")
+        @ApiModelProperty(example = "인문대학 관리")
         private String role;
         @ApiModelProperty(example = "rnwnsgud90@naver.com")
         private String email;
@@ -83,6 +88,7 @@ public class EmployeeRespDto {
             this.id = employee.getId();
             this.college = ofNullable(employee.getCollege()).filter(s -> !s.isEmpty()).orElse(null);
             this.department = ofNullable(employee.getDepartment()).filter(s -> !s.isEmpty()).orElse(null);
+            this.position = ofNullable(employee.getPosition()).filter(s -> !s.isEmpty()).orElse(null);
             this.name = ofNullable(employee.getName()).filter(s -> !s.isEmpty()).orElse(null);
             this.phoneNumber = ofNullable(employee.getPhoneNumber()).filter(s -> !s.isEmpty()).orElse(null);
             this.imageUrl = ofNullable(employee.getImageUrl()).filter(s -> !s.isEmpty()).orElse(null);

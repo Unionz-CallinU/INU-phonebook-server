@@ -23,6 +23,10 @@ jobs:
 
       # 이렇게 하나의 커맨드가 아닌 여러 커맨드도 실행 가능합니다.
       - name: make application-prod.yml
+        env:
+          MYSQL_URL: ${{ secrets.MYSQL_URL }}
+          MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+          TABLE_NAME: ${{ secrets.TABLE_NAME }}
         run: |
           cd ./inu-phonebook/src/main/resources
           touch ./application-prod.yml

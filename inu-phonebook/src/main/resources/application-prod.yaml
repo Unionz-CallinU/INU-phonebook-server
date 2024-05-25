@@ -1,9 +1,9 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: ${{secrets.MYSQL_PASSWORD}}
-    url: jdbc:mysql://${{secrets.MYSQL_URL}}:3306/${{secrets.TABLE_NAME}}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
-    username: ${{secrets.TABLE_NAME}}
+    password: ${{ secrets.MYSQL_PASSWORD }}
+    url: jdbc:mysql://${{ secrets.MYSQL_URL }}:3306/${{ secrets.TABLE_NAME }}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${{ secrets.TABLE_NAME }}
   jpa:
     hibernate:
       ddl-auto: update

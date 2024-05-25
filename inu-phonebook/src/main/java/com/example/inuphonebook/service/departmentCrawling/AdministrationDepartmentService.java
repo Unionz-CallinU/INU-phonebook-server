@@ -37,7 +37,8 @@ public class AdministrationDepartmentService implements ImageCrawlingService {
         String URI = null;
         if (departmentType == "biz") {
             siteId = departmentType;
-            URI = url + url2_WWW + siteId + "/3622" + url3;
+            URI = url + departmentType + url2 + siteId + "/3622" + url3;
+
         } else if (departmentType == "tax") {
             siteId = departmentType;
             URI = url + departmentType + url2 + siteId + "/3673" + url3;

@@ -38,7 +38,7 @@ public class EngineeringDepartmentService implements ImageCrawlingService {
             URI = url + departmentType + url2 + siteId + "/3001" + url3;
         } else if (departmentType == "meca") {
             siteId = departmentType;
-            URI = url + departmentType + url2 + siteId + "/3041" + url3;
+            URI = url + "bio-robot" + url2 + siteId + "/3041" + url3;
         } else if (departmentType == "elec") {
             siteId = departmentType;
             URI = url + departmentType + url2 + siteId + "/3334" + url3;

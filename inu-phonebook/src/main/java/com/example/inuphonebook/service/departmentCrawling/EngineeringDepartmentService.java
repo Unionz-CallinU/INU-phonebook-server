@@ -15,7 +15,7 @@ import java.io.IOException;
 @Service
 public class EngineeringDepartmentService implements ImageCrawlingService {
 
-    @Value("${location.url}")
+    @Value("${location.url}") //
     private String url;
     @Value("${location.url2}")
     private String url2;

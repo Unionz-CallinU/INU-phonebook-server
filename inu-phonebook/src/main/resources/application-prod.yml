@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    password: ${MYSQL_PASSWORD}
+    url: jdbc:mysql://${MYSQL_URL}:3306/${TABLE_NAME}?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: ${TABLE_NAME}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    properties:
+      '[hibernate.default_batch_fetch_size]': 100
+      hibernate.jdbc.batch_size: 20
+    show-sql: true
+  output:
+    ansi:
+      enabled: always
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher
+
+logging:
+  level:
+    '[com.example.inuphonebook]': DEBUG
+    '[org.hibernate.type]': TRACE
+
+location:
+  url : "https://"
+  url2 : ".inu.ac.kr/"
+  url3 : "/subview.do"
+  url2_WWW : "www.inu.ac.kr/"
+  url_sports : ".inu.ac.kr/bbs/board.php?bo_table=sub1_2_a"
